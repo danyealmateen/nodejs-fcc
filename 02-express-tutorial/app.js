@@ -2,16 +2,6 @@ const express = require('express');
 const app = express();
 const { products } = require('./data');
 
-var text = 'Detta är en exempeltext';
-var position = text.indexOf('exempel');
-
-if (position !== -1) {
-  console.log("Delsträngen 'exempel' hittades vid position " + position + '.');
-  console.log(position !== -1);
-} else {
-  console.log("Delsträngen 'exempel' hittades inte i texten.");
-}
-
 app.get('/', (req, res) => {
   res.send('<h1>Home Page</h1><a href="/api/products">products</a>');
 });
