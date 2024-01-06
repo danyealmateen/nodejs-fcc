@@ -1,20 +1,21 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-let { people } = require("./data");
+let { people } = require('./data');
 
 // static assets
-app.use(express.static("./methods-public"));
-app.use(express.urlencoded({extended:false}));
+app.use(express.static('./methods-public'));
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/api/people", (req, res) => {
+app.get('/api/people', (req, res) => {
   res.status(200).json({ success: true, data: people });
 });
 
-app.post("/login", (req, res) => {
-  res.send("POST");
-  console.log("postat");
+app.post('/login', (req, res) => {
+  res.send('POST');
+  console.log(req.body);
+  console.log('postat');
 });
 
 app.listen(5000, (req, res) => {
-  console.log("Server is listening on port 5000....");
+  console.log('Server is listening on port 5000....');
 });
