@@ -1,28 +1,20 @@
 const express = require("express");
 const app = express();
-const logger = require("./logger");
-const authorize = require("./authorize");
-// req => middleware => res
-app.use([logger, authorize]);
+let { people } = require("./data");
 
-app.get("/", (req, res) => {
-  res.send("Home");
+// static assets
+app.use(express.static("./methods-public"));
+app.use(express.urlencoded({extended:false}));
+
+app.get("/api/people", (req, res) => {
+  res.status(200).json({ success: true, data: people });
 });
 
-app.get("/about", (req, res) => {
-  res.send("About");
+app.post("/login", (req, res) => {
+  res.send("POST");
+  console.log("postat");
 });
 
-app.get("/api/products", (req, res) => {
-  res.send("Products");
+app.listen(5000, (req, res) => {
+  console.log("Server is listening on port 5000....");
 });
-
-app.get("/api/items", (req, res) => {
-  res.send("Items");
-});
-
-app.listen(5000, () => {
-  console.log("Server listening to port 5000.");
-});
-
-//woppeliwopp
