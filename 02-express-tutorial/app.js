@@ -3,6 +3,7 @@ const app = express();
 let { people } = require('./data');
 
 // static assets
+//används för att
 app.use(express.static('./methods-public'));
 app.use(express.urlencoded({ extended: false }));
 
@@ -11,9 +12,11 @@ app.get('/api/people', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  res.send('POST');
-  console.log(req.body);
-  console.log('postat');
+  const { name } = req.body;
+  if (name) {
+    return res.status(200).send(`Welcome ${name}`);
+  }
+  res.status(401).send('Please Provide Credentials');
 });
 
 app.listen(5000, (req, res) => {
